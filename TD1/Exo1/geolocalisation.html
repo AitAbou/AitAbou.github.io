@@ -39,5 +39,45 @@
 
         getLocation();
     </script>
+    <h1>Données d'Orientation</h1>
+    <p>Alpha (Yaw): <span id="alpha"></span> degrés</p>
+    <p>Beta (Pitch): <span id="beta"></span> degrés</p>
+    <p>Gamma (Roll): <span id="gamma"></span> degrés</p>
+
+    <h1>Données de Mouvement</h1>
+    <p>Accélération en rotation X: <span id="rotationX"></span></p>
+    <p>Accélération en rotation Y: <span id="rotationY"></span></p>
+    <p>Accélération en rotation Z: <span id="rotationZ"></span></p>
+    <p>Accélération en translation X: <span id="translationX"></span></p>
+    <p>Accélération en translation Y: <span id="translationY"></span></p>
+    <p>Accélération en translation Z: <span id="translationZ"></span></p>
+
+    <script>
+        window.addEventListener('deviceorientation', function(event) {
+            var alpha = event.alpha;
+            var beta = event.beta;
+            var gamma = event.gamma;
+
+            document.getElementById("alpha").textContent = alpha.toFixed(2);
+            document.getElementById("beta").textContent = beta.toFixed(2);
+            document.getElementById("gamma").textContent = gamma.toFixed(2);
+        });
+
+        window.addEventListener('devicemotion', function(event) {
+            var rotationX = event.rotationRate.alpha;
+            var rotationY = event.rotationRate.beta;
+            var rotationZ = event.rotationRate.gamma;
+            var translationX = event.acceleration.x;
+            var translationY = event.acceleration.y;
+            var translationZ = event.acceleration.z;
+
+            document.getElementById("rotationX").textContent = rotationX.toFixed(2);
+            document.getElementById("rotationY").textContent = rotationY.toFixed(2);
+            document.getElementById("rotationZ").textContent = rotationZ.toFixed(2);
+            document.getElementById("translationX").textContent = translationX.toFixed(2);
+            document.getElementById("translationY").textContent = translationY.toFixed(2);
+            document.getElementById("translationZ").textContent = translationZ.toFixed(2);
+        });
+    </script>
 </body>
 </html>
