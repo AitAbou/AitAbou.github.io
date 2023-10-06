@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Dessiner dans un canvas HTML et avec un svg</title>
+</head>
+<body>
+    <h3>Canvas: </h3>
+    <canvas id="myCanvas" width="800" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        const ciel = new Image();
+        ciel.src = "ciel.jpg";
+        ciel.onload = () => {
+            ctx.drawImage(ciel, 0, 0, canvas.width, canvas.height);
+        // Dessiner le soleil
+        ctx.fillStyle = "yellow";
+        ctx.beginPath();
+        ctx.arc(300, 100, 40, 0, Math.PI * 2);
+        ctx.fill();
+
+        };
+
+        const mer = new Image();
+        mer.src = "mer.jpg";
+        mer.onload = () => {
+            ctx.drawImage(mer, 0, 200, canvas.width, 200);
+        // Dessiner la coque du bateau (triangle)
+        ctx.fillStyle = "brown";
+        ctx.beginPath();
+        ctx.moveTo(100, 250);  // Point inférieur gauche
+        ctx.lineTo(200, 250);  // Point inférieur droit
+        ctx.lineTo(150, 150);  // Point supérieur
+        ctx.closePath();
+        ctx.fill();
+
+        // Dessiner le mât (rectangle)
+        ctx.fillStyle = "gray";
+        ctx.fillRect(145, 100, 10, 100);
+
+        // Dessiner la voile (triangle)
+        ctx.fillStyle = "white";
+        ctx.beginPath();
+        ctx.moveTo(150, 100);  // Point supérieur
+        ctx.lineTo(125, 200);  // Coin inférieur gauche
+        ctx.lineTo(175, 200);  // Coin inférieur droit
+        ctx.closePath();
+        ctx.fill();
+        };
+    </script>
+ 
+    <h3>SVG: </h3> 
+
+    <svg width="400" height="400">
+    // Rectangle pour le ciel 
+    <rect x="0" y="0" width="400" height="200" fill="#87CEEB">
+        // Ajoutez des événements de changement de couleur 
+        <animate attributeName="fill" from="#87CEEB" to="#00BFFF" dur="0.5s" begin="mouseover" end="mouseout"/>
+        <animate attributeName="fill" from="#00BFFF" to="#87CEEB" dur="0.5s" begin="mouseout" end="mouseover"/>
+    </rect>
+
+    // Rectangle pour la mer 
+    <rect x="0" y="200" width="400" height="200" fill="#4169E1">
+        // Ajoutez des événements de changement de couleur 
+        <animate attributeName="fill" from="#4169E1" to="#000080" dur="0.5s" begin="mouseover" end="mouseout"/>
+        <animate attributeName="fill" from="#000080" to="#4169E1" dur="0.5s" begin="mouseout" end="mouseover"/>
+    </rect>
+
+    // Cercle pour le soleil 
+    <circle cx="50" cy="50" r="40" fill="#FFD700">
+        // Ajoutez des événements de changement de couleur 
+        <animate attributeName="fill" from="#FFD700" to="#FFFF00" dur="0.5s" begin="mouseover" end="mouseout"/>
+        <animate attributeName="fill" from="#FFFF00" to="#FFD700" dur="0.5s" begin="mouseout" end="mouseover"/>
+    </circle>
+
+    // Rectangle pour la maison 
+    <rect x="150" y="150" width="100" height="100" fill="#8B4513">
+        // Ajoutez des événements de changement de couleur 
+        <animate attributeName="fill" from="#8B4513" to="#CD853F" dur="0.5s" begin="mouseover" end="mouseout"/>
+        <animate attributeName="fill" from="#CD853F" to="#8B4513" dur="0.5s" begin="mouseout" end="mouseover"/>
+    </rect>
+
+    // Triangle pour le toit de la maison 
+    <polygon points="150,150 200,100 250,150" fill="#8B4513">
+        // Ajoutez des événements de changement de couleur 
+        <animate attributeName="fill" from="#8B4513" to="#CD853F" dur="0.5s" begin="mouseover" end="mouseout"/>
+        <animate attributeName="fill" from="#CD853F" to="#8B4513" dur="0.5s" begin="mouseout" end="mouseover"/>
+    </polygon>
+    </svg>
+</body>
+</html>
